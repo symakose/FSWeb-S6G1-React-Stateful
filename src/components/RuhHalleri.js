@@ -64,7 +64,7 @@ export default function RuhHalleri() {
         style={{ color: ruhHali == mutluRuhHali ? "royalblue" : "crimson" }}
       >
         {ruhHali}
-      </div>{" "}
+      </div>
       {/* ADIM 3 */}
       <div>
         <button id="mutluEt" onClick={mutluEt}>
