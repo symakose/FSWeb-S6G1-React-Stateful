@@ -43,7 +43,7 @@ export default function Dondurucu() {
 
   const toggleDondurucu = () => {
     /* ADIM 4 */
-    setDondurucuAcik(!dondurucuAcik);
+    setDondurucuAcik((ilk) => !ilk);
   };
 
   return (
@@ -57,7 +57,7 @@ export default function Dondurucu() {
         ) /* ADIM 2 */
       }
       <button id="toggleDondurucu" onClick={toggleDondurucu}>
-        Gizle {dondurucuAcik ? "Gizle" : "Göster"}
+        {dondurucuAcik ? "Gizle" : "Göster"}
       </button>
     </div>
   );

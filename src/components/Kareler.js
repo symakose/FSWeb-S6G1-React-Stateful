@@ -25,7 +25,7 @@ export default function Kareler() {
   // kareyi gözlemleyecek. Sayfa yüklendiğinde aktif kare olmayacak,
   // yani  'aktifKare' null olmalı.
   const [aktifKare, setAktifKare] = useState(null);
-  const [kareler, setKareler] = useState[KareIdListesi];
+  const [kareler, setKareler] = useState(KareIdListesi);
 
   const ClassAdiAl = (id) => {
     // Bu bir click handler değildir, JSX içinde kullanılan bir yardımcıdır(helper).(aşağıya bakın)
@@ -41,18 +41,17 @@ export default function Kareler() {
     // eğer zaten aktifse, o zaman önce state i resetlemeliyiz.
     setAktifKare((prevAktifKare) => (prevAktifKare === id ? null : id));
   };
-  const YeniKareEkle = () => {
-    // Rastgele bir id oluşturduk
-    const yeniKareId = `sq${Math.random().toString(36).substr(2, 5)}`;
-    setKareler([...kareler, yeniKareId]);
-  };
-
-  const KareSil = (id) => {
-    setKareler(kareler.filter((kareId) => kareId !== id));
-    if (aktifKare === id) {
-      setAktifKare(null);
-    }
-  };
+  //const YeniKareEkle = () => {
+  // Rastgele bir id oluşturduk
+  // const yeniKareId = `sq${Math.random().toString(36).substr(2, 5)}`;
+  //    setKareler([...kareler, yeniKareId]);
+  //  };
+  //   const KareSil = (id) => {
+  //     setKareler(kareler.filter((kareId) => kareId !== id));
+  //     if (aktifKare === id) {
+  //       setAktifKare(null);
+  //     }
+  //   };
 
   return (
     <div className="widget-squares container">
@@ -62,21 +61,16 @@ export default function Kareler() {
           // Kötü bug!  'KareIdListesi' yerine bir state dilimi kullanmalıyız.
           // Şöyle diyebiliriz: "aa bu çalışıyor!" Ama kareler bir state diliminden gelmiyorsa,
           // asla yeni kare ekleyemeyiz, kareleri düzenleyemeyiz ya da silemeyiz. Düzeltin!
-          KareIdListesi.map((id) => (
+          kareler.map((id) => (
             <div
               id={id}
               key={id}
               className={`square ${ClassAdiAl(id)}`}
               onClick={() => AktifEt(id)}
-              onContextMenu={(e) => {
-                e.preventDefault();
-                KareSil(id);
-              }}
             ></div>
           ))
         }
       </div>
-      <button onClick={YeniKareEkle}>Yeni Kare Ekle</button>
     </div>
   );
 }

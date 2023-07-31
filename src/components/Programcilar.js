@@ -38,16 +38,19 @@ export default function Programcilar() {
     // Öne çıkan geliştiricinin _isim_ adını döndürmek için her iki state dilimini kullanacak.
     // Closureların güzelliği, argümanlar yoluyla bilgi enjekte etmeye gerek kalmadan programın
     // bu bölgesinden her iki state dilimini de "görebilmemiz"dir.
-    const oneCikanProgramci = programcilar.find(
-      (programci) => programci.id === programciId
-    );
-    return oneCikanProgramci ? oneCikanProgramci.isim : "";
+    const isim1 = "";
+    enIyilerListesi.forEach((event) => {
+      if (programciId == event.id) {
+        isim1 = event.isim;
+      }
+    });
+    return isim1;
   };
 
   const stil = {
     fontSize: "1.5em",
     marginTop: "0.5em",
-    color: programciId === "3" ? "gold" : "royalblue", // 🤔 kutlarken renk gold'a dönecek
+    color: programciId !== null ? "gold" : "royalblue", // 🤔 kutlarken renk gold'a dönecek
   };
 
   return (
@@ -72,18 +75,15 @@ export default function Programcilar() {
             </div>
           ))
         }
-        <button onClick={() => setProgramciId(null)}>Reset</button>
       </div>
       <div id="featured" style={stil}>
         {
           // Üçlüler, bir şeyin "gerçekliğine" bağlı olarak "bir şeyi veya diğerini" ifade etmek için harikadır..
           // Sözde-kod: öne çıkan true ise metin 1'i oluşturun, aksi takdirde metin 2'yi oluşturun..
           // Sabit kodlanmış false'u doğru değişkenle değiştirin.
-          programciId ? (
-            <>`🎉 Hadi ${oneCikaninIsmi()}'ı kutlayalım! 🥳`</>
-          ) : (
-            "Harika bir programcı seçin"
-          )
+          programciId !== null
+            ? `🎉 Hadi ${oneCikaninIsmi()}'ı kutlayalım! 🥳`
+            : "Harika bir programcı seçin"
         }
       </div>
     </div>
